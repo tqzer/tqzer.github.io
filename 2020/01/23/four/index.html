@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>最小生成树 | tqzer&#39;s blog</title>
+  <title>P1122 最大子树和 | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Prim算法此算法与dijkstra算法非常相似。 贪心思想，每次在已生成的树和未生成的树之间选择轻边。无论选轻边和重边都不会在两个圈中形成环，不会对未生成的最小生成树的集合产生影响，所以选择轻边。 用minn数组表示此点与当前最小生成树相连的边权最小值，vh数组表示此点是否已在最小生成树里，每次找到轻边就标记，并修改与轻边相连的边。">
+  <meta name="description" content="小明对数学饱有兴趣，并且是个勤奋好学的学生，总是在课后留在教室向老师请教一些问题。一天他早晨骑车去上课，路上见到一个老伯正在修剪花花草草，顿时想到了一个有关修剪花卉的问题。于是当日课后，小明就向老师提出了这个问题： 一株奇怪的花卉，上面共连有NN朵花，共有N-1N−1条枝干将花儿连在一起，并且未修剪时每朵花都不是孤立的。每朵花都有一个“美丽指数”，该数越大说明这朵花越漂亮，也有“美丽指数”为负数的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最小生成树">
-<meta property="og:url" content="http://yoursite.com/2020/01/18/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index.html">
+<meta property="og:title" content="P1122 最大子树和">
+<meta property="og:url" content="http://yoursite.com/2020/01/23/four/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="1. Prim算法此算法与dijkstra算法非常相似。 贪心思想，每次在已生成的树和未生成的树之间选择轻边。无论选轻边和重边都不会在两个圈中形成环，不会对未生成的最小生成树的集合产生影响，所以选择轻边。 用minn数组表示此点与当前最小生成树相连的边权最小值，vh数组表示此点是否已在最小生成树里，每次找到轻边就标记，并修改与轻边相连的边。">
+<meta property="og:description" content="小明对数学饱有兴趣，并且是个勤奋好学的学生，总是在课后留在教室向老师请教一些问题。一天他早晨骑车去上课，路上见到一个老伯正在修剪花花草草，顿时想到了一个有关修剪花卉的问题。于是当日课后，小明就向老师提出了这个问题： 一株奇怪的花卉，上面共连有NN朵花，共有N-1N−1条枝干将花儿连在一起，并且未修剪时每朵花都不是孤立的。每朵花都有一个“美丽指数”，该数越大说明这朵花越漂亮，也有“美丽指数”为负数的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-18T04:46:26.721Z">
-<meta property="article:modified_time" content="2020-01-21T02:20:16.928Z">
-<meta property="article:tag" content="图论">
+<meta property="article:published_time" content="2020-01-23T13:08:13.000Z">
+<meta property="article:modified_time" content="2020-01-23T13:37:06.855Z">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tqzer&#39;s blog" type="application/atom+xml">
@@ -158,36 +158,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-最小生成树" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-four" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      最小生成树
+      P1122 最大子树和
     </h1>
   
 
         
-        <a href="/2020/01/18/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2020-01-18T04:46:26.721Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-18</time>
+        <a href="/2020/01/23/four/" class="archive-article-date">
+  	<time datetime="2020-01-23T13:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-Prim算法"><a href="#1-Prim算法" class="headerlink" title="1. Prim算法"></a>1. Prim算法</h2><p>此算法与dijkstra算法非常相似。</p>
-<p>贪心思想，每次在已生成的树和未生成的树之间选择轻边。无论选轻边和重边都不会在两个圈中形成环，不会对未生成的最小生成树的集合产生影响，所以选择轻边。</p>
-<p>用minn数组表示此点与当前最小生成树相连的边权最小值，vh数组表示此点是否已在最小生成树里，每次找到轻边就标记，并修改与轻边相连的边。</p>
-<a id="more"></a>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,g[<span class="number">5010</span>][<span class="number">5010</span>],vh[<span class="number">5010</span>],ans,minn[<span class="number">5010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">memset</span>(g,<span class="number">1</span>,<span class="keyword">sizeof</span>(g));</span><br><span class="line">	<span class="built_in">memset</span>(minn,<span class="number">1</span>,<span class="keyword">sizeof</span>(minn));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y&gt;&gt;w;</span><br><span class="line">		<span class="keyword">if</span>(w&lt;g[x][y])g[x][y]=w;</span><br><span class="line">		<span class="keyword">if</span>(w&lt;g[y][x])g[y][x]=w;</span><br><span class="line">	&#125;</span><br><span class="line">	minn[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minid=<span class="number">0</span>,minv=<span class="number">1e7</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">if</span>(!vh[j]&amp;&amp;minn[j]&lt;minv)&#123;</span><br><span class="line">				minv=minn[j];</span><br><span class="line">				minid=j;</span><br><span class="line">			&#125;</span><br><span class="line">		vh[minid]=<span class="number">1</span>;</span><br><span class="line">		ans+=minn[minid];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">if</span>(!vh[j]&amp;&amp;g[minid][j]&lt;minn[j])</span><br><span class="line">				minn[j]=g[minid][j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">if</span>(!vh[i])flag=<span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"orz\n"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-Kruskal算法"><a href="#2-Kruskal算法" class="headerlink" title="2.Kruskal算法"></a>2.Kruskal算法</h2><p>如果现在有几个连通块，要将它们连通，一定需要将它们之间最小的边连在一起。判断两点是否属于一个集合，可以用并查集操作。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,father[<span class="number">5010</span>],sum,ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> f,e,w;</span><br><span class="line">&#125;;</span><br><span class="line">node g[<span class="number">200010</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node p,node q)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p.w&lt;q.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(father[k]==k)<span class="keyword">return</span> k;</span><br><span class="line">	<span class="keyword">return</span> father[k]=find(father[k]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		father[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;g[i].f&gt;&gt;g[i].e&gt;&gt;g[i].w;</span><br><span class="line">	sort(g+<span class="number">1</span>,g+m+<span class="number">1</span>,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> mf=find(g[i].f),me=find(g[i].e);</span><br><span class="line">		<span class="keyword">if</span>(mf!=me)&#123;</span><br><span class="line">			father[me]=mf;</span><br><span class="line">			ans+=g[i].w;</span><br><span class="line">			sum++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(sum==n<span class="number">-1</span>)<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(sum==n<span class="number">-1</span>)<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"orz\n"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        <p>小明对数学饱有兴趣，并且是个勤奋好学的学生，总是在课后留在教室向老师请教一些问题。一天他早晨骑车去上课，路上见到一个老伯正在修剪花花草草，顿时想到了一个有关修剪花卉的问题。于是当日课后，小明就向老师提出了这个问题：</p>
+<p>一株奇怪的花卉，上面共连有NN朵花，共有N-1N−1条枝干将花儿连在一起，并且未修剪时每朵花都不是孤立的。每朵花都有一个“美丽指数”，该数越大说明这朵花越漂亮，也有“美丽指数”为负数的，说明这朵花看着都让人恶心。所谓“修剪”，意为：去掉其中的一条枝条，这样一株花就成了两株，扔掉其中一株。经过一系列“修剪“之后，还剩下最后一株花（也可能是一朵）。老师的任务就是：通过一系列“修剪”（也可以什么“修剪”都不进行），使剩下的那株（那朵）花卉上所有花朵的“美丽指数”之和最大。</p>
+<p>老师想了一会儿，给出了正解。小明见问题被轻易攻破，相当不爽，于是又拿来问你。<br><a id="more"></a></p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P1122" target="_blank" rel="noopener">最大子树和</a></p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>一棵树以任意一个节点为根都可以形成一棵树，都可以得出最优解，不妨以1为根。一束花只有在它的根结点选的情况才存在，此根结点必选。如果某一棵子树最优值为负，不选该子树；反之则选。最后找出所有节点中的最大值。</p>
+<p>状态转移方程为：</p>
+<script type="math/tex; mode=display">
+dp[root]=\sum_{i=1}^mmax(dp[child_i],0)</script><h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a><em>Code</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	vh[root]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		<span class="keyword">if</span>(!vh[g[root][i]])&#123;</span><br><span class="line">			ch[root].push_back(g[root][i]);</span><br><span class="line">			f(g[root][i]);</span><br><span class="line">		&#125;</span><br><span class="line">	dp[root]=a[root];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ch[root].size();i++)</span><br><span class="line">		dp[root]+=max(dp[ch[root][i]],<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -221,7 +219,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
         		</li>
       		
 		</ul>
@@ -277,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/18/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/23/four/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,15 +289,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          最短路径
-        
-      </div>
-    </a>
   
+    <a href="/2020/01/21/%E6%A0%91%E5%BD%A2dp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">树形dp</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
