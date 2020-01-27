@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>P5765 [CQOI2005]珠宝 | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。 Link[CQOI2005]珠宝 Analysis一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。 其他的很好分析了，状态转移方程为：  dp[root][k]&#x3D;\sum_{i&#x3D;1}^mmin_{j&#x3D;1}^{max}(dp[child">
+  <meta name="description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P5765 [CQOI2005]珠宝">
 <meta property="og:url" content="http://yoursite.com/2020/01/27/my-fifth-post/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。 Link[CQOI2005]珠宝 Analysis一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。 其他的很好分析了，状态转移方程为：  dp[root][k]&#x3D;\sum_{i&#x3D;1}^mmin_{j&#x3D;1}^{max}(dp[child">
+<meta property="og:description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-27T15:21:24.000Z">
-<meta property="article:modified_time" content="2020-01-27T15:42:52.674Z">
+<meta property="article:modified_time" content="2020-01-27T15:52:25.060Z">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
   
@@ -179,6 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。</p>
+<a id="more"></a>
 <h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P5765" target="_blank" rel="noopener">[CQOI2005]珠宝</a></p>
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。</p>
 <p>其他的很好分析了，状态转移方程为：</p>
