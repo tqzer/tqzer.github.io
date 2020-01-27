@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>P5765 [CQOI2005]�鱦 | tqzer&#39;s blog</title>
+  <title>P5765 [CQOI2005]珠宝 | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="��һ�� $ n $������������ÿ���㰲��һ����������ţ�ʹ�����ڵ���в�ͬ�ı�ţ���ŵ��ܺ;���С�� Link[CQOI2005]�鱦 Analysisһ��ʼ�Ի��˺ܾã�����Ϊ��֪����ŵ����ֵ�Ƕ��٣��������ͬѧ��֪������ʮ�͹��ˣ������źܴ󲻻�ó����Ž⡣ �����ĺܺ÷����ˣ�״̬ת�Ʒ��">
+  <meta name="description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。 Link[CQOI2005]珠宝 Analysis一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。 其他的很好分析了，状态转移方程为：  dp[root][k]&#x3D;\sum_{i&#x3D;1}^mmin_{j&#x3D;1}^{max}(dp[child">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P5765 [CQOI2005]�鱦">
+<meta property="og:title" content="P5765 [CQOI2005]珠宝">
 <meta property="og:url" content="http://yoursite.com/2020/01/27/my-fifth-post/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="��һ�� $ n $������������ÿ���㰲��һ����������ţ�ʹ�����ڵ���в�ͬ�ı�ţ���ŵ��ܺ;���С�� Link[CQOI2005]�鱦 Analysisһ��ʼ�Ի��˺ܾã�����Ϊ��֪����ŵ����ֵ�Ƕ��٣��������ͬѧ��֪������ʮ�͹��ˣ������źܴ󲻻�ó����Ž⡣ �����ĺܺ÷����ˣ�״̬ת�Ʒ��">
+<meta property="og:description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。 Link[CQOI2005]珠宝 Analysis一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。 其他的很好分析了，状态转移方程为：  dp[root][k]&#x3D;\sum_{i&#x3D;1}^mmin_{j&#x3D;1}^{max}(dp[child">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-27T15:21:24.000Z">
-<meta property="article:modified_time" content="2020-01-27T15:41:03.052Z">
-<meta property="article:tag" content="���">
+<meta property="article:modified_time" content="2020-01-27T15:42:52.674Z">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tqzer&#39;s blog" type="application/atom+xml">
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      P5765 [CQOI2005]�鱦
+      P5765 [CQOI2005]珠宝
     </h1>
   
 
@@ -178,12 +178,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>��һ�� $ n $������������ÿ���㰲��һ����������ţ�ʹ�����ڵ���в�ͬ�ı�ţ���ŵ��ܺ;���С��</p>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P5765" target="_blank" rel="noopener">[CQOI2005]�鱦</a></p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>һ��ʼ�Ի��˺ܾã�����Ϊ��֪����ŵ����ֵ�Ƕ��٣��������ͬѧ��֪������ʮ�͹��ˣ������źܴ󲻻�ó����Ž⡣</p>
-<p>�����ĺܺ÷����ˣ�״̬ת�Ʒ���Ϊ��</p>
+        <p>有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P5765" target="_blank" rel="noopener">[CQOI2005]珠宝</a></p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。</p>
+<p>其他的很好分析了，状态转移方程为：</p>
 <script type="math/tex; mode=display">
-dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>��д����ʱע�⵽������ǰд����dp�ķ���ǵݹ��״̬ת�Ʒֿ���д����������������Ҫ��˫�ߵ����ݹ����hash��ʧЧ����Ҫ�������ס���ӡ����д��һ�𣬾Ϳ��Ա����鷳��</p>
+dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>在写程序时注意到，我以前写树形dp的风格是递归和状态转移分开来写。这样导致这种需要存双边的树递归回来hash表失效，还要开数组记住孩子。如果写在一起，就可以避免麻烦。</p>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a><em>Code</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,vh[<span class="number">50010</span>],dp[<span class="number">50010</span>][<span class="number">20</span>],ans=<span class="number">1e9</span>;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; g[<span class="number">50010</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	vh[root]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)</span><br><span class="line">		dp[root][i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> son=g[root][i];</span><br><span class="line">		<span class="keyword">if</span>(!vh[son])&#123;</span><br><span class="line">			f(son);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;j++)&#123;</span><br><span class="line">				<span class="keyword">int</span> minn=<span class="number">1e9</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">10</span>;k++)</span><br><span class="line">					<span class="keyword">if</span>(k!=j)minn=min(minn,dp[son][k]);</span><br><span class="line">				dp[root][j]+=minn;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		g[x].push_back(y);</span><br><span class="line">		g[y].push_back(x);</span><br><span class="line">	&#125;</span><br><span class="line">	f(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)</span><br><span class="line">		ans=min(ans,dp[<span class="number">1</span>][i]);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -218,7 +218,7 @@ dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>��
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">���</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
         		</li>
       		
 		</ul>
@@ -446,10 +446,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">题解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">���</a>
               </li>
             
             <div class="clearfix"></div>
