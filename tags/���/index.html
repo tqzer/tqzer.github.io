@@ -6,18 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>树形dp | tqzer&#39;s blog</title>
+  <title>Tag: ��� | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本概念就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="树形dp">
-<meta property="og:url" content="http://yoursite.com/2020/01/21/%E6%A0%91%E5%BD%A2dp/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="tqzer&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/%EF%BF%BD%EF%BF%BD%EF%BF%BD/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="基本概念就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-21T02:49:59.000Z">
-<meta property="article:modified_time" content="2020-01-23T13:51:01.895Z">
-<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tqzer&#39;s blog" type="application/atom+xml">
@@ -158,193 +153,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-树形dp" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      树形dp
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/27/my-fifth-post/" class="archive-article-date">
+  	<time datetime="2020-01-27T15:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/27/my-fifth-post/">P5765 [CQOI2005]�鱦</a>
     </h1>
   
 
-        
-        <a href="/2020/01/21/%E6%A0%91%E5%BD%A2dp/" class="archive-article-date">
-  	<time datetime="2020-01-21T02:49:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。</p>
-<a id="more"></a>
-<h2 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h2><h3 id="1-二叉苹果树"><a href="#1-二叉苹果树" class="headerlink" title="1.二叉苹果树"></a>1.<a href="https://www.luogu.com.cn/problem/P2015" target="_blank" rel="noopener">二叉苹果树</a></h3><p>题目很好理解，分析可得每个节点的状态是保留k根树枝可获得的最多苹果数。现在的问题是如何将子节点的状态转移到根。对于一棵子树，应该有4种情况：一、两棵子树都砍掉。二、保留左子树。三、保留右子树。四、保留两棵子树。而根的最优解应该是以上四种情况的最大值。</p>
-<p>还有一个注意点，就是预处理建树。由于题目中没有指出明确的父子关系，所以应该建双向边。然后用hash表记录每个点的访问情况，防止子节点访问到父节点。并且1要先标上。</p>
-<p>key code：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> lc=<span class="number">0</span>,rc=<span class="number">0</span>,lw,rw,len=g[root].size();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vh[g[root][i].e])&#123;</span><br><span class="line">			<span class="keyword">if</span>(lc==<span class="number">0</span>)&#123;</span><br><span class="line">				lc=g[root][i].e;</span><br><span class="line">				lw=g[root][i].w;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				rc=g[root][i].e;</span><br><span class="line">				rw=g[root][i].w;</span><br><span class="line">			&#125;</span><br><span class="line">			vh[g[root][i].e]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(lc==<span class="number">0</span>&amp;&amp;rc==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	f(lc);</span><br><span class="line">	f(rc);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		dp[root][i+<span class="number">1</span>]=dp[lc][i]+lw;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		dp[root][i+<span class="number">1</span>]=max(dp[rc][i]+rw,dp[root][i+<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">			<span class="keyword">if</span>(i+j&lt;n)dp[root][i+j+<span class="number">2</span>]=max(dp[root][i+j+<span class="number">2</span>],dp[lc][i]+dp[rc][j]+lw+rw);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-选课"><a href="#2-选课" class="headerlink" title="2.选课"></a>2.<a href="https://www.luogu.com.cn/problem/P2014" target="_blank" rel="noopener">选课</a></h3><p>由于选后面的课程需要先修课，所以形成了树形的依赖。对于每一个节点选k个课程能获得的最多学分，我一开始的想法是把k个课程分成<script type="math/tex">son(root)</script>份，求最大值，可这种想法的本质其实是深搜，效率低。</p>
-<p>我们可以这样想：这其实是一个分组背包模型，每棵子树是一组，每组的物品是<script type="math/tex">f(child,1),f(child,2),f(child,3)</script>……而用k容量的背包去每组装一个物品可获得的最大值。而依据题目的关系，最后不一定会形成一棵树，可能会形成一个森林，我们可以借助一个没有学分的虚拟的0根结点。</p>
-<p>需要注意的是，每个节点的状态可以定义成三维，也可以用滚动数组的思想优化成二维，但是这就需要考虑体积那层循环是否需要倒序，否则会变成完全背包。并且每个节点自身要选，转移时要偏移一位。</p>
-<p>key code:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		f(g[root][i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x=g[root][i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=j;k++)</span><br><span class="line">				dp[root][j]=max(dp[root][j],dp[root][j-k]+dp[x][k]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(root!=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=m;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">			dp[root][i]=dp[root][i<span class="number">-1</span>]+w[root];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-没有上司的舞会"><a href="#3-没有上司的舞会" class="headerlink" title="3.没有上司的舞会"></a>3.<a href="https://www.luogu.com.cn/problem/P1352" target="_blank" rel="noopener">没有上司的舞会</a></h3><p>由于上司的参加导致了下属的不参加，所以构成了树形关系。因为每个节点本身是否参加对于后面的节点有后效性，而要实现dp需要把是否参加定义为一个状态。</p>
-<p>分析：如果该节点参加，该节点的状态应该由每个不参加的子节点转移。如果该节点不参加，那么子节点参加不参加都是可以，而互相没有影响，所以应该选较大的那个。</p>
-<p>可得状态转移方程如下,m代表根的子节点数。</p>
-<script type="math/tex; mode=display">
-dp[root][p]=
-\begin{cases}
-\sum\limits_{i=1}^mdp[child_i][0]&p=1\\
-\sum\limits_{i=1}^mmax(dp[child_i][1],dp[child_i][0])&p=0\\
-\end{cases}</script><p>key code:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	<span class="keyword">if</span>(!len)&#123;</span><br><span class="line">		dp[root][<span class="number">1</span>]=a[root];</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		f(g[root][i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		dp[root][<span class="number">1</span>]+=dp[g[root][i]][<span class="number">0</span>];</span><br><span class="line">	dp[root][<span class="number">1</span>]+=a[root];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		dp[root][<span class="number">0</span>]+=max(dp[g[root][i]][<span class="number">1</span>],dp[g[root][i]][<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">���</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/21/%E6%A0%91%E5%BD%A2dp/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/01/23/four/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          P1122 最大子树和
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最短路径</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -367,9 +229,9 @@ dp[root][p]=
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
