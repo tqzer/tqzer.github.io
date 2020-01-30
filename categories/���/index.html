@@ -6,18 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>最短路径 | tqzer&#39;s blog</title>
+  <title>Category: ��� | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原理：1.从起点到终点的最短路径最多经过n-1条边（没有负环） 2.已经确定最短路径的两点中任意一段都是最短路径">
-<meta property="og:type" content="article">
-<meta property="og:title" content="最短路径">
-<meta property="og:url" content="http://yoursite.com/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="tqzer&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="原理：1.从起点到终点的最短路径最多经过n-1条边（没有负环） 2.已经确定最短路径的两点中任意一段都是最短路径">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-21T02:36:35.000Z">
-<meta property="article:modified_time" content="2020-01-21T02:45:42.941Z">
-<meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tqzer&#39;s blog" type="application/atom+xml">
@@ -158,194 +153,169 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-最短路径" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      最短路径
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/30/sixth/" class="archive-article-date">
+  	<time datetime="2020-01-30T02:08:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/30/sixth/">P1879 [USACO06NOV]������Corn Fields</a>
     </h1>
   
 
-        
-        <a href="/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" class="archive-article-date">
-  	<time datetime="2020-01-21T02:36:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>1.从起点到终点的最短路径最多经过n-1条边（没有负环）</p>
-<p>2.已经确定最短路径的两点中任意一段都是最短路径</p>
-<a id="more"></a>
-
-<h2 id="1-bellman-ford算法-O-n-e"><a href="#1-bellman-ford算法-O-n-e" class="headerlink" title="1. bellman_ford算法 O(n*e)"></a>1. bellman_ford算法 O(n*e)</h2><p> 从起点开始，用已经更新过的点所连的边去更新其他的点，最多更新n-1次可以把所有点更新完。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,m,s,d[<span class="number">10010</span>],g[<span class="number">5010</span>][<span class="number">5010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		d[i]=<span class="number">2147483647</span>;<span class="comment">//初始化除了起点设为无穷大</span></span><br><span class="line">	d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			g[i][j]=<span class="number">2147483647</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> f,e,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f&gt;&gt;e&gt;&gt;w;</span><br><span class="line">		<span class="keyword">if</span>(w&lt;g[f][e])g[f][e]=w;<span class="comment">//防止有重边的数据</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> flag=<span class="literal">true</span>;<span class="comment">//flag表示此次循环有没有更新节点，若没有更新说明更新完，跳出循环</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;flag&amp;&amp;i&lt;=n;i++)&#123;</span><br><span class="line">		flag=<span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)&#123;<span class="comment">//枚举所有的边，用已更新的节点去更新其他节点</span></span><br><span class="line">				<span class="keyword">if</span>(d[j]+g[j][k]&lt;d[k])&#123;<span class="comment">//松弛</span></span><br><span class="line">					d[k]=d[j]+g[j][k];</span><br><span class="line">					flag=<span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;d[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-SPFA算法"><a href="#2-SPFA算法" class="headerlink" title="2.SPFA算法"></a>2.SPFA算法</h2><p>此算法实质是bellman_ford算法的队列优化。<br>以上的算法做了许多无用的枚举，因为一个节点被更新，只有与它相连的点才可能被更新。<br>与宽搜的区别：宽搜一般不会重复入队，SPFA会重复入队，即标记需要恢复。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,s,d[<span class="number">10010</span>],vh[<span class="number">10010</span>],que[<span class="number">1000010</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> e,w;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span> &lt;node&gt; g[<span class="number">10010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		d[i]=<span class="number">2147483647</span>;</span><br><span class="line">	d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> f,e,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f&gt;&gt;e&gt;&gt;w;</span><br><span class="line">		node q;</span><br><span class="line">		q.e=e;</span><br><span class="line">		q.w=w;</span><br><span class="line">		g[f].push_back(q);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> head=<span class="number">1</span>,tail=<span class="number">2</span>;</span><br><span class="line">	que[<span class="number">1</span>]=s;</span><br><span class="line">	<span class="keyword">while</span>(head&lt;tail)&#123;</span><br><span class="line">		<span class="keyword">int</span> x=que[head],t=g[x].size();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(d[x]&lt;d[g[x][i].e]-g[x][i].w)&#123;<span class="comment">//因为相加会超int所以改成减</span></span><br><span class="line">				d[g[x][i].e]=d[x]+g[x][i].w;</span><br><span class="line">				<span class="keyword">if</span>(!vh[g[x][i].e])&#123;<span class="comment">//如果不在队中就入队</span></span><br><span class="line">					que[tail]=g[x][i].e;<span class="comment">//将更新后的节点入队</span></span><br><span class="line">					tail++;</span><br><span class="line">					vh[g[x][i].e]=<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">				</span><br><span class="line">		&#125;</span><br><span class="line">		head++;</span><br><span class="line">		vh[x]=<span class="number">0</span>;<span class="comment">//因为找到的不一定是最短路径，所以要重复入队</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;d[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-1-Dijkstra算法：O-n-2"><a href="#3-1-Dijkstra算法：O-n-2" class="headerlink" title="3.1 Dijkstra算法：O(n^2)"></a>3.1 Dijkstra算法：O(n^2)</h2><p>实现过程：1.找到未确定最短路径的点中目前距离最小的点，可以确定这个点的最短路径就是这个距离。<br>2.标记这个点，并用这个点去扩展其他点的最短路径。</p>
-<p>但为什么步骤一是正确的呢？</p>
-<p>因为找到的这个点的距离是由所有确定最短路径的点扩展而来的，如果它不是最短路径，那这个最短路径一定是由未确定的点扩展而来的，但其他的点只能绕一圈扩展到这个点，一定比当前距离长，由此得证。</p>
-<p>以上思想是此算法的灵魂，在最短路径的变式中，必须满足以上的贪心法则，才可以运用此算法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,s,d[<span class="number">10010</span>],vh[<span class="number">10010</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> e,w;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span> &lt;node&gt; g[<span class="number">10010</span>];<span class="comment">//用vector实现，防止爆空间</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		d[i]=<span class="number">2147483647</span>;</span><br><span class="line">	d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> f,e,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f&gt;&gt;e&gt;&gt;w;</span><br><span class="line">		node q;</span><br><span class="line">		q.e=e;</span><br><span class="line">		q.w=w;</span><br><span class="line">		g[f].push_back(q);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minn=<span class="number">1e9</span>,minid=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;<span class="comment">//找没有被标记的点的最小值</span></span><br><span class="line">			<span class="keyword">if</span>(!vh[j]&amp;&amp;d[j]&lt;minn)&#123;</span><br><span class="line">				minn=d[j];</span><br><span class="line">				minid=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		vh[minid]=<span class="number">1</span>;<span class="comment">//此点确定最短路径</span></span><br><span class="line">		<span class="keyword">int</span> t=g[minid].size();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;t;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!vh[g[minid][j].e]&amp;&amp;d[minid]&lt;d[g[minid][j].e]-g[minid][j].w)</span><br><span class="line">				d[g[minid][j].e]=d[minid]+g[minid][j].w;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;d[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-Dijkstra算法的优先队列优化-O-n-m-log-m"><a href="#3-2-Dijkstra算法的优先队列优化-O-n-m-log-m" class="headerlink" title="3.2 Dijkstra算法的优先队列优化:O((n+m)*log m)"></a>3.2 Dijkstra算法的优先队列优化:O((n+m)*log m)</h2><p>由于以上算法每次都要找最小值，顺序查找复杂度为O(n^2)，所以可以用堆优化为O（nlogn）<br>这里用stl中的优先队列实现</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,s,d[<span class="number">100010</span>],vh[<span class="number">100010</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> e,w;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node2</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> id,dis;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt; (node2 a,node2 b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a.dis&gt;b.dis;<span class="comment">//由于不清楚运算符重载在优先队列里的操作，符号一开始写反了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span> &lt;node&gt; g[<span class="number">100010</span>];</span><br><span class="line">priority_queue &lt;node2&gt; que;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		d[i]=<span class="number">2147483647</span>;</span><br><span class="line">	d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> f,e,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f&gt;&gt;e&gt;&gt;w;</span><br><span class="line">		node q;</span><br><span class="line">		q.e=e;</span><br><span class="line">		q.w=w;</span><br><span class="line">		g[f].push_back(q);</span><br><span class="line">	&#125;</span><br><span class="line">	node2 q;</span><br><span class="line">	q.dis=<span class="number">0</span>;</span><br><span class="line">	q.id=s;</span><br><span class="line">	que.push(q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(vh[que.top().id])que.pop();</span><br><span class="line">		<span class="keyword">int</span> head=que.top().id;</span><br><span class="line">		vh[head]=<span class="number">1</span>;</span><br><span class="line">		que.pop();</span><br><span class="line">		<span class="keyword">int</span> t=g[head].size();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;t;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!vh[g[head][j].e]&amp;&amp;d[head]&lt;d[g[head][j].e]-g[head][j].w)&#123;</span><br><span class="line">				d[g[head][j].e]=d[head]+g[head][j].w;</span><br><span class="line">				q.id=g[head][j].e;<span class="comment">//入栈的id为这条边的终点序号，不是循环序号</span></span><br><span class="line">				q.dis=d[g[head][j].e];</span><br><span class="line">				que.push(q);</span><br><span class="line">			&#125;		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;d[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-Floyed算法：O-n-3"><a href="#4-Floyed算法：O-n-3" class="headerlink" title="4.Floyed算法：O(n^3)"></a>4.Floyed算法：O(n^3)</h2><p>此算法是基于dp思想的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2147483647</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,m,s,d[<span class="number">1010</span>][<span class="number">1010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(i!=j)d[i][j]=INF;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> f,e,w;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;f&gt;&gt;e&gt;&gt;w;</span><br><span class="line">		<span class="keyword">if</span>(d[f][e]&gt;w)d[f][e]=w;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">				d[i][j]=min(d[i][j],d[i][k]+d[k][j]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;d[s][i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它还可以判断连通性，如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">				g[i][j]=g[i][j]||(g[i][k]&amp;&amp;g[k][j]);</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">״ѹdp</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/���//" class="article-tag-list-link color4">���</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2020/01/21/%E6%A0%91%E5%BD%A2dp/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          树形dp
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/01/18/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最小生成树</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/27/my-fifth-post/" class="archive-article-date">
+  	<time datetime="2020-01-27T15:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
+</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
+    	 
   
-  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/27/my-fifth-post/">P5765 [CQOI2005]�鱦</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">����dp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/���//" class="article-tag-list-link color4">���</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/23/four/" class="archive-article-date">
+  	<time datetime="2020-01-23T13:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-23</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/23/four/">P1122 ���������</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">����dp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/���//" class="article-tag-list-link color4">���</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
   
 
-  
+    
 
 
           </div>
@@ -368,10 +338,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
