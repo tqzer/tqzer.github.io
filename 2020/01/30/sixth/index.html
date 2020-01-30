@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>P1879 [USACO06NOV]������Corn Fields | tqzer&#39;s blog</title>
+  <title>P1879 [USACO06NOV]玉米田Corn Fields | tqzer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ũ����John������һ�鳤���ε���������������������ֳ�$ M $��$ N $��$ (1 �� M �� 12; 1 �� N �� 12) $��ÿһ����һ�������ε����ء�John�����������ϵ�ĳ������������ζ�Ĳݣ���������ţ�����á� �ź����ǣ���Щ�����൱ƶ񤣬���������ֲݡ���">
+  <meta name="description" content="农场主John新买了一块长方形的新牧场，这块牧场被划分成$ M $行$ N $列$ (1 ≤ M ≤ 12; 1 ≤ N ≤ 12) $，每一格都是一块正方形的土地。John打算在牧场上的某几格里种上美味的草，供他的奶牛们享用。 遗憾的是，有些土地相当贫瘠，不能用来种草。并且，奶牛们喜欢独占一块草地的感觉，于是John不会选择两块相邻的土地，也就是说，没有哪两块草地有公共边。 John想知道，如果">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P1879 [USACO06NOV]������Corn Fields">
+<meta property="og:title" content="P1879 [USACO06NOV]玉米田Corn Fields">
 <meta property="og:url" content="http://yoursite.com/2020/01/30/sixth/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="ũ����John������һ�鳤���ε���������������������ֳ�$ M $��$ N $��$ (1 �� M �� 12; 1 �� N �� 12) $��ÿһ����һ�������ε����ء�John�����������ϵ�ĳ������������ζ�Ĳݣ���������ţ�����á� �ź����ǣ���Щ�����൱ƶ񤣬���������ֲݡ���">
+<meta property="og:description" content="农场主John新买了一块长方形的新牧场，这块牧场被划分成$ M $行$ N $列$ (1 ≤ M ≤ 12; 1 ≤ N ≤ 12) $，每一格都是一块正方形的土地。John打算在牧场上的某几格里种上美味的草，供他的奶牛们享用。 遗憾的是，有些土地相当贫瘠，不能用来种草。并且，奶牛们喜欢独占一块草地的感觉，于是John不会选择两块相邻的土地，也就是说，没有哪两块草地有公共边。 John想知道，如果">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-30T02:08:09.000Z">
-<meta property="article:modified_time" content="2020-01-30T03:18:30.577Z">
-<meta property="article:tag" content="״ѹdp">
+<meta property="article:modified_time" content="2020-01-30T03:29:11.609Z">
+<meta property="article:tag" content="状压dp">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tqzer&#39;s blog" type="application/atom+xml">
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      P1879 [USACO06NOV]������Corn Fields
+      P1879 [USACO06NOV]玉米田Corn Fields
     </h1>
   
 
@@ -178,17 +178,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ũ����John������һ�鳤���ε���������������������ֳ�$ M $��$ N $��$ (1 �� M �� 12; 1 �� N �� 12) $��ÿһ����һ�������ε����ء�John�����������ϵ�ĳ������������ζ�Ĳݣ���������ţ�����á�</p>
-<p>�ź����ǣ���Щ�����൱ƶ񤣬���������ֲݡ����ң���ţ��ϲ����ռһ��ݵصĸо�������John����ѡ���������ڵ����أ�Ҳ����˵��û��������ݵ��й����ߡ�</p>
-<p>John��֪������������ǲݵص��ܿ�������ô��һ���ж�������ֲ�����ɹ���ѡ�񣿣���Ȼ������������ȫ�ķ�Ҳ��һ�ַ�����</p>
+        <p>农场主John新买了一块长方形的新牧场，这块牧场被划分成$ M $行$ N $列$ (1 ≤ M ≤ 12; 1 ≤ N ≤ 12) $，每一格都是一块正方形的土地。John打算在牧场上的某几格里种上美味的草，供他的奶牛们享用。</p>
+<p>遗憾的是，有些土地相当贫瘠，不能用来种草。并且，奶牛们喜欢独占一块草地的感觉，于是John不会选择两块相邻的土地，也就是说，没有哪两块草地有公共边。</p>
+<p>John想知道，如果不考虑草地的总块数，那么，一共有多少种种植方案可供他选择？（当然，把新牧场完全荒废也是一种方案）</p>
 <a id="more"></a>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P1879" target="_blank" rel="noopener">[USACO06NOV]������Corn Fields</a></p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>�ȹ۲����ݷ�Χ��dfs�����ˣ����������ݷ�Χ����15������״̬ѹ����</p>
-<p>��ÿһ�е���һ���׶Σ�����ѡΪ1����ѡΪ0����ô���ϵ�״̬�Ϳ�����һ�������Ʊ�ʾ��ѡ��ǰ�е�״̬��ʲô���������أ�����û�����ڵģ�����һ��û�����ڵģ����ұ����ǿɿ��ѵ����ء�ǰ���������е�����һ���û����С�</p>
-<p>��$ s $��$ s’$��ʾ���ϵ�״̬����״̬ת�Ʒ���Ϊ��</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a><em>Link</em></h3><p><a href="https://www.luogu.com.cn/problem/P1879" target="_blank" rel="noopener">[USACO06NOV]玉米田Corn Fields</a></p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a><em>Analysis</em></h3><p>先观察数据范围，dfs过不了，又由于数据范围不过15，考虑状态压缩。</p>
+<p>把每一行当成一个阶段，列上选为1，不选为0，那么列上的状态就可以用一个二进制表示。选当前列的状态有什么限制条件呢？自身没有相邻的，与上一行没有相邻的，并且必须是可开垦的土地。前两个用与判掉，后一个用或来判。</p>
+<p>用$ s $和$ s’$表示列上的状态，则状态转移方程为：</p>
 <script type="math/tex; mode=display">
 dp[i][s]=\sum_{s'=0}^{max}dp[i-1][s'](check(s,s'))</script><h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a><em>Code</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 100000000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> m,n,g[<span class="number">15</span>],dp[<span class="number">15</span>][<span class="number">5010</span>],ans;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> !(x&amp;(x&lt;&lt;<span class="number">1</span>))&amp;&amp;!(y&amp;(y&lt;&lt;<span class="number">1</span>))&amp;&amp;!(x&amp;y)&amp;&amp;(x|g[a])==g[a]&amp;&amp;(y|g[b])==g[b];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> s=<span class="number">1</span>&lt;&lt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">int</span> x;</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">			g[i]+=x*(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s;i++)</span><br><span class="line">		<span class="keyword">if</span>((i|g[<span class="number">1</span>])==g[<span class="number">1</span>]&amp;&amp;(i&amp;(i&lt;&lt;<span class="number">1</span>))==<span class="number">0</span>)dp[<span class="number">1</span>][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=m;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;s;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;s;k++)</span><br><span class="line">				<span class="keyword">if</span>(check(j,k,i,i<span class="number">-1</span>))dp[i][j]+=dp[i<span class="number">-1</span>][k];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s;i++)</span><br><span class="line">		ans=(ans+dp[m][i])%mod;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a><em>Tips</em></h3><p>״ѹdp�󲿷�Ҫ�õ�λ���㣬��λ�������ͨ��������ȼ����ң�����ÿ��λ����Ӧ�ü������ţ�������ѷ�����һ����</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a><em>Tips</em></h3><p>状压dp大部分要用到位运算，而位运算和普通运算的优先级很乱，所以每次位运算应该加上括号，否则很难发现这一错误。</p>
 
       
 
@@ -223,7 +223,7 @@ dp[i][s]=\sum_{s'=0}^{max}dp[i-1][s'](check(s,s'))</script><h3 id="Code"><a href
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">״ѹdp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">状压dp</a>
         		</li>
       		
 		</ul>
@@ -235,7 +235,7 @@ dp[i][s]=\sum_{s'=0}^{max}dp[i-1][s'](check(s,s'))</script><h3 id="Code"><a href
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/���//" class="article-tag-list-link color4">���</a>
+        			<a href="/categories/题解//" class="article-tag-list-link color3">题解</a>
         		</li>
       		
 		</ul>
@@ -465,7 +465,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">״ѹdp</a>
+                <a href="javascript:void(0)" class="js-tag color5">状压dp</a>
               </li>
             
             <div class="clearfix"></div>
