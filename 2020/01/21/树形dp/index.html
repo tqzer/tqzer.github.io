@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="动态规划," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本概念就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树形dp">
+<meta property="og:url" content="http://yoursite.com/2020/01/21/%E6%A0%91%E5%BD%A2dp/index.html">
+<meta property="og:site_name" content="tqzer&#39;s blog">
+<meta property="og:description" content="基本概念就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-21T02:49:59.000Z">
+<meta property="article:modified_time" content="2020-01-30T03:31:52.407Z">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/21/树形dp/"/>
+
+
+
+
+
+  <title>树形dp | tqzer's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tqzer's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">tqzer's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/21/%E6%A0%91%E5%BD%A2dp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tqzer's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树形dp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-21T10:49:59+08:00">
+                2020-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">知识学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>就是在树的结构上做动态规划，找到最优解。一般递推方向有两种，一种是叶-&gt;根，另一种是根-&gt;叶。我认为第一种最为常见，并且比较好理解。所以我们的思路一般是先处理叶节点，再把叶节点的状态一步步地转移到根结点，即树的后序遍历。</p>
+<a id="more"></a>
+<h2 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h2><h3 id="1-二叉苹果树"><a href="#1-二叉苹果树" class="headerlink" title="1.二叉苹果树"></a>1.<a href="https://www.luogu.com.cn/problem/P2015" target="_blank" rel="noopener">二叉苹果树</a></h3><p>题目很好理解，分析可得每个节点的状态是保留k根树枝可获得的最多苹果数。现在的问题是如何将子节点的状态转移到根。对于一棵子树，应该有4种情况：一、两棵子树都砍掉。二、保留左子树。三、保留右子树。四、保留两棵子树。而根的最优解应该是以上四种情况的最大值。</p>
+<p>还有一个注意点，就是预处理建树。由于题目中没有指出明确的父子关系，所以应该建双向边。然后用hash表记录每个点的访问情况，防止子节点访问到父节点。并且1要先标上。</p>
+<p>key code：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> lc=<span class="number">0</span>,rc=<span class="number">0</span>,lw,rw,len=g[root].size();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vh[g[root][i].e])&#123;</span><br><span class="line">			<span class="keyword">if</span>(lc==<span class="number">0</span>)&#123;</span><br><span class="line">				lc=g[root][i].e;</span><br><span class="line">				lw=g[root][i].w;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				rc=g[root][i].e;</span><br><span class="line">				rw=g[root][i].w;</span><br><span class="line">			&#125;</span><br><span class="line">			vh[g[root][i].e]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(lc==<span class="number">0</span>&amp;&amp;rc==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	f(lc);</span><br><span class="line">	f(rc);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		dp[root][i+<span class="number">1</span>]=dp[lc][i]+lw;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		dp[root][i+<span class="number">1</span>]=max(dp[rc][i]+rw,dp[root][i+<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">			<span class="keyword">if</span>(i+j&lt;n)dp[root][i+j+<span class="number">2</span>]=max(dp[root][i+j+<span class="number">2</span>],dp[lc][i]+dp[rc][j]+lw+rw);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-选课"><a href="#2-选课" class="headerlink" title="2.选课"></a>2.<a href="https://www.luogu.com.cn/problem/P2014" target="_blank" rel="noopener">选课</a></h3><p>由于选后面的课程需要先修课，所以形成了树形的依赖。对于每一个节点选k个课程能获得的最多学分，我一开始的想法是把k个课程分成<script type="math/tex">son(root)</script>份，求最大值，可这种想法的本质其实是深搜，效率低。</p>
+<p>我们可以这样想：这其实是一个分组背包模型，每棵子树是一组，每组的物品是<script type="math/tex">f(child,1),f(child,2),f(child,3)</script>……而用k容量的背包去每组装一个物品可获得的最大值。而依据题目的关系，最后不一定会形成一棵树，可能会形成一个森林，我们可以借助一个没有学分的虚拟的0根结点。</p>
+<p>需要注意的是，每个节点的状态可以定义成三维，也可以用滚动数组的思想优化成二维，但是这就需要考虑体积那层循环是否需要倒序，否则会变成完全背包。并且每个节点自身要选，转移时要偏移一位。</p>
+<p>key code:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		f(g[root][i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x=g[root][i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=j;k++)</span><br><span class="line">				dp[root][j]=max(dp[root][j],dp[root][j-k]+dp[x][k]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(root!=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=m;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">			dp[root][i]=dp[root][i<span class="number">-1</span>]+w[root];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-没有上司的舞会"><a href="#3-没有上司的舞会" class="headerlink" title="3.没有上司的舞会"></a>3.<a href="https://www.luogu.com.cn/problem/P1352" target="_blank" rel="noopener">没有上司的舞会</a></h3><p>由于上司的参加导致了下属的不参加，所以构成了树形关系。因为每个节点本身是否参加对于后面的节点有后效性，而要实现dp需要把是否参加定义为一个状态。</p>
+<p>分析：如果该节点参加，该节点的状态应该由每个不参加的子节点转移。如果该节点不参加，那么子节点参加不参加都是可以，而互相没有影响，所以应该选较大的那个。</p>
+<p>可得状态转移方程如下,m代表根的子节点数。</p>
+<script type="math/tex; mode=display">
+dp[root][p]=
+\begin{cases}
+\sum\limits_{i=1}^mdp[child_i][0]&p=1\\
+\sum\limits_{i=1}^mmax(dp[child_i][1],dp[child_i][0])&p=0\\
+\end{cases}</script><p>key code:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	<span class="keyword">if</span>(!len)&#123;</span><br><span class="line">		dp[root][<span class="number">1</span>]=a[root];</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		f(g[root][i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		dp[root][<span class="number">1</span>]+=dp[g[root][i]][<span class="number">0</span>];</span><br><span class="line">	dp[root][<span class="number">1</span>]+=a[root];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		dp[root][<span class="number">0</span>]+=max(dp[g[root][i]][<span class="number">1</span>],dp[g[root][i]][<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/21/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" rel="next" title="最短路径">
+                <i class="fa fa-chevron-left"></i> 最短路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/23/four/" rel="prev" title="P1122 最大子树和">
+                P1122 最大子树和 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典例题"><span class="nav-number">2.</span> <span class="nav-text">经典例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-二叉苹果树"><span class="nav-number">2.1.</span> <span class="nav-text">1.二叉苹果树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-选课"><span class="nav-number">2.2.</span> <span class="nav-text">2.选课</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-没有上司的舞会"><span class="nav-number">2.3.</span> <span class="nav-text">3.没有上司的舞会</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
