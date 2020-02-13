@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="树形dp," />
+  <meta name="keywords" content="单调队列," />
 
 
 
@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。">
+<meta name="description" content="今天是小Z的生日，同学们为他带来了一块蛋糕。这块蛋糕是一个长方体，被用不同色彩分成了N个相同的小块，每小块都有对应的幸运值。 小Z作为寿星，自然希望吃到的第一块蛋糕的幸运值总和最大，但小Z最多又只能吃M小块(M≤N)的蛋糕。 吃东西自然就不想思考了，于是小Z把这个任务扔给了学OI的你，请你帮他从这N小块中找出连续的k块蛋糕(k≤M)，使得其上的幸运值最大。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P5765 [CQOI2005]珠宝">
-<meta property="og:url" content="http://yoursite.com/2020/01/27/my-fifth-post/index.html">
+<meta property="og:title" content="P1714 切蛋糕">
+<meta property="og:url" content="http://yoursite.com/2020/02/13/ten/index.html">
 <meta property="og:site_name" content="tqzer&#39;s blog">
-<meta property="og:description" content="有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。">
+<meta property="og:description" content="今天是小Z的生日，同学们为他带来了一块蛋糕。这块蛋糕是一个长方体，被用不同色彩分成了N个相同的小块，每小块都有对应的幸运值。 小Z作为寿星，自然希望吃到的第一块蛋糕的幸运值总和最大，但小Z最多又只能吃M小块(M≤N)的蛋糕。 吃东西自然就不想思考了，于是小Z把这个任务扔给了学OI的你，请你帮他从这N小块中找出连续的k块蛋糕(k≤M)，使得其上的幸运值最大。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-27T15:21:24.000Z">
-<meta property="article:modified_time" content="2020-02-08T15:47:47.438Z">
-<meta property="article:tag" content="树形dp">
+<meta property="article:published_time" content="2020-02-13T07:05:59.000Z">
+<meta property="article:modified_time" content="2020-02-13T08:14:39.060Z">
+<meta property="article:tag" content="单调队列">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/27/my-fifth-post/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/02/13/ten/"/>
 
 
 
 
 
-  <title>P5765 [CQOI2005]珠宝 | tqzer's blog</title>
+  <title>P1714 切蛋糕 | tqzer's blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/my-fifth-post/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/ten/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">P5765 [CQOI2005]珠宝</h1>
+          <h1 class="post-title" itemprop="name headline">P1714 切蛋糕</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-27T23:21:24+08:00">
-                2020-01-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-13T15:05:59+08:00">
+                2020-02-13
               </time>
             
 
@@ -321,14 +321,18 @@
       
 
       
-        <p>有一棵 $ n $个结点的树，给每个点安排一个正整数编号，使得相邻点具有不同的编号，编号的总和尽量小。</p>
+        <p>今天是小Z的生日，同学们为他带来了一块蛋糕。这块蛋糕是一个长方体，被用不同色彩分成了N个相同的小块，每小块都有对应的幸运值。</p>
+<p>小Z作为寿星，自然希望吃到的第一块蛋糕的幸运值总和最大，但小Z最多又只能吃M小块(M≤N)的蛋糕。</p>
+<p>吃东西自然就不想思考了，于是小Z把这个任务扔给了学OI的你，请你帮他从这N小块中找出连续的k块蛋糕(k≤M)，使得其上的幸运值最大。</p>
 <a id="more"></a>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p><a href="https://www.luogu.com.cn/problem/P5765" target="_blank" rel="noopener">[CQOI2005]珠宝</a></p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>一开始迷惑了很久，是因为不知道编号的最大值是多少，后来请教同学得知开到几十就够了，如果编号很大不会得出最优解。</p>
-<p>其他的很好分析了，状态转移方程为：</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p><a href="https://www.luogu.com.cn/problem/P1714" target="_blank" rel="noopener">切蛋糕</a></p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>首先想到的朴素算法是选定一个节点，往前选定起点，寻找最大值。由于区间连续，可以用前缀和优化。可得</p>
 <script type="math/tex; mode=display">
-dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>在写程序时注意到，我以前写树形dp的风格是递归和状态转移分开来写。这样导致这种需要存双边的树递归回来hash表失效，还要开数组记住孩子。如果写在一起，就可以避免麻烦。</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,vh[<span class="number">50010</span>],dp[<span class="number">50010</span>][<span class="number">20</span>],ans=<span class="number">1e9</span>;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; g[<span class="number">50010</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=g[root].size();</span><br><span class="line">	vh[root]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)</span><br><span class="line">		dp[root][i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> son=g[root][i];</span><br><span class="line">		<span class="keyword">if</span>(!vh[son])&#123;</span><br><span class="line">			f(son);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;j++)&#123;</span><br><span class="line">				<span class="keyword">int</span> minn=<span class="number">1e9</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">10</span>;k++)</span><br><span class="line">					<span class="keyword">if</span>(k!=j)minn=min(minn,dp[son][k]);</span><br><span class="line">				dp[root][j]+=minn;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		g[x].push_back(y);</span><br><span class="line">		g[y].push_back(x);</span><br><span class="line">	&#125;</span><br><span class="line">	f(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)</span><br><span class="line">		ans=min(ans,dp[<span class="number">1</span>][i]);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+dp[i]=\max_{k=1}^{m}(s[i]-s[i-k])</script><p>由于$s[i]$不变，化简得</p>
+<script type="math/tex; mode=display">
+dp[i]=s[i]-\min_{k=1}^{m}(s[i-k])</script><p>这样，我们就可以用一个长度最长为m的单调队列来维护最小值。</p>
+<p>注意，0要先入队，否则开头有问题。</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 500010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[MAXN],s[MAXN],ans=<span class="number">-2e9</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> id,d;</span><br><span class="line">&#125;;</span><br><span class="line">node q[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		s[i]=s[i<span class="number">-1</span>]+a[i];</span><br><span class="line">	<span class="keyword">int</span> head=<span class="number">1</span>,tail=<span class="number">1</span>;</span><br><span class="line">	q[head].d=<span class="number">0</span>;</span><br><span class="line">	q[head].id=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		ans=max(ans,s[i]-q[head].d);</span><br><span class="line">		<span class="keyword">while</span>(head&lt;=tail&amp;&amp;q[head].id&lt;=i-m)head++;</span><br><span class="line">		<span class="keyword">while</span>(head&lt;=tail&amp;&amp;q[tail].d&gt;=s[i])tail--;</span><br><span class="line">		q[++tail].d=s[i];</span><br><span class="line">		q[tail].id=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -345,7 +349,7 @@ dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>在�
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%A0%91%E5%BD%A2dp/" rel="tag"># 树形dp</a>
+            <a href="/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/" rel="tag"># 单调队列</a>
           
         </div>
       
@@ -358,8 +362,8 @@ dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>在�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/23/four/" rel="next" title="P1122 最大子树和">
-                <i class="fa fa-chevron-left"></i> P1122 最大子树和
+              <a href="/2020/02/08/ninth/" rel="next" title="P1886 滑动窗口 /【模板】单调队列">
+                <i class="fa fa-chevron-left"></i> P1886 滑动窗口 /【模板】单调队列
               </a>
             
           </div>
@@ -367,10 +371,6 @@ dp[root][k]=\sum_{i=1}^mmin_{j=1}^{max}(dp[child_i][j])+k(j!=k)</script><p>在�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/30/sixth/" rel="prev" title="P1879 [USACO06NOV]玉米田Corn Fields">
-                P1879 [USACO06NOV]玉米田Corn Fields <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
